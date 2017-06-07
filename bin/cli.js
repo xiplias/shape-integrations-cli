@@ -1,21 +1,17 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+const program = require('commander')
+const sic = require('shape-integrations-core')
+const path = require('path')
+const Table = require('easy-table')
+const chalk = require('chalk')
+const prettyjson = require('prettyjson')
 
-const program = require("commander")
-const sic = require("shape-integrations-core")
-const path = require("path")
-const Table = require("easy-table")
-const chalk = require("chalk")
-const prettyjson = require("prettyjson")
-
-program.version("0.0.1").option("-p, --path <path>", "path for projects")
+program.version('0.0.1').option('-p, --path <path>', 'path for projects')
 
 program
-  .command("run [projectIdentifier] [testIdentifier]")
-  .description("run setup commands for all envs")
+  .command('run [projectIdentifier] [testIdentifier]')
+  .description('run setup commands for all envs')
   .action(function(projectIdentifier, testIdentifier, options) {
     const projectPath = program.path || path.join(__dirname)
 
@@ -44,8 +40,8 @@ program
   })
 
 program
-  .command("list [project]")
-  .description("run setup commands for all envs")
+  .command('list [project]')
+  .description('run setup commands for all envs')
   .action(function(projectIdentifier, options) {
     const projectPath = program.path || path.join(__dirname)
 
@@ -58,14 +54,14 @@ program
 
 const listProjects = function(path) {
   return sic.getAllProjects(path, function(err, data) {
-    console.log("\n")
-    headline("Projects")
+    console.log('\n')
+    headline('Projects')
     var t = new Table()
 
     data.forEach(function(project) {
-      t.cell("Identifier", project.identifier)
-      t.cell("Name", project.name)
-      t.cell("Base URL", project.base_url)
+      t.cell('Identifier', project.identifier)
+      t.cell('Name', project.name)
+      t.cell('Base URL', project.base_url)
       t.newRow()
     })
 
@@ -75,27 +71,27 @@ const listProjects = function(path) {
 
 const showProject = function(path, projectIdentifier) {
   return sic.getProject(path, projectIdentifier, function(err, project) {
-    console.log("\n")
+    console.log('\n')
     headline(project.name)
 
     var t = new Table()
-    t.cell("Identifier", project.identifier)
-    t.cell("Base URL", project.base_url)
-    t.cell("Path", path)
-    t.cell("Test username", project.test_username)
-    t.cell("Test password", project.test_password)
-    t.cell("Access key", project.accessKey)
+    t.cell('Identifier', project.identifier)
+    t.cell('Base URL', project.base_url)
+    t.cell('Path', path)
+    t.cell('Test username', project.test_username)
+    t.cell('Test password', project.test_password)
+    t.cell('Access key', project.accessKey)
     t.newRow()
 
-    console.log(t.printTransposed(), "\n")
+    console.log(t.printTransposed(), '\n')
 
     sic.getTestsForProject(path, projectIdentifier, function(err, data) {
       var t = new Table()
 
       data.forEach(function(project) {
         t.cell(`Tests (${data.length})`, project.identifier)
-        t.cell("Name", project.name)
-        t.cell("Description", project.description)
+        t.cell('Name', project.name)
+        t.cell('Description', project.description)
         t.newRow()
       })
 
@@ -106,17 +102,17 @@ const showProject = function(path, projectIdentifier) {
 
 const testResult = function(projectIdentifier, testIdentifier, result) {
   if (result.ok || result.res) {
-    console.log("\n")
+    console.log('\n')
     console.log(chalk.green(`OK - ${projectIdentifier}/${testIdentifier}`))
-    console.log("\n")
+    console.log('\n')
   } else {
-    console.log("\n")
+    console.log('\n')
     console.log(chalk.red(`ERROR - ${projectIdentifier}/${testIdentifier}`))
     console.log(
       prettyjson.render(result.err, {
-        keysColor: "red",
-        dashColor: "red",
-        stringColor: "red"
+        keysColor: 'red',
+        dashColor: 'red',
+        stringColor: 'red'
       })
     )
   }
@@ -124,7 +120,7 @@ const testResult = function(projectIdentifier, testIdentifier, result) {
 
 const headline = function(str) {
   console.log(chalk.blue(str))
-  console.log(chalk.blue(Array(str.length + 1).join("-")), "\n")
+  console.log(chalk.blue(Array(str.length + 1).join('-')), '\n')
 }
 
 program.parse(process.argv)

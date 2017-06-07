@@ -7,7 +7,8 @@
     "lint": "prettier --no-semi --single-quote --write bin/cli.js"
   },
   "bin": {
-    "si": "bin/cli.js"
+    "si": "bin/cli.js",
+    "shape-integrations": "bin/cli.js"
   },
   "repository": {
     "type": "git",

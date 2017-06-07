@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const sic = require('shape-integrations-core')
+const core = require('shape-integrations-core')
 const path = require('path')
 const Table = require('easy-table')
 const chalk = require('chalk')
@@ -16,24 +16,26 @@ program
     const projectPath = program.path || path.join(__dirname)
 
     if (testIdentifier) {
-      sic.runTest(projectPath, projectIdentifier, testIdentifier, function(
+      core.runTest(projectPath, projectIdentifier, testIdentifier, function(
         err,
         result
       ) {
         testResult(projectIdentifier, testIdentifier, result)
       })
     } else {
-      sic.getTestsForProject(projectPath, projectIdentifier, function(
+      core.getTestsForProject(projectPath, projectIdentifier, function(
         err,
         data
       ) {
         data.forEach(function(test) {
-          sic.runTest(projectPath, projectIdentifier, test.identifier, function(
-            err,
-            result
-          ) {
-            testResult(projectIdentifier, test.identifier, result)
-          })
+          core.runTest(
+            projectPath,
+            projectIdentifier,
+            test.identifier,
+            function(err, result) {
+              testResult(projectIdentifier, test.identifier, result)
+            }
+          )
         })
       })
     }
@@ -53,7 +55,7 @@ program
   })
 
 const listProjects = function(path) {
-  return sic.getAllProjects(path, function(err, data) {
+  return core.getAllProjects(path, function(err, data) {
     console.log('\n')
     headline('Projects')
     var t = new Table()
@@ -70,7 +72,7 @@ const listProjects = function(path) {
 }
 
 const showProject = function(path, projectIdentifier) {
-  return sic.getProject(path, projectIdentifier, function(err, project) {
+  return core.getProject(path, projectIdentifier, function(err, project) {
     console.log('\n')
     headline(project.name)
 
@@ -85,7 +87,7 @@ const showProject = function(path, projectIdentifier) {
 
     console.log(t.printTransposed(), '\n')
 
-    sic.getTestsForProject(path, projectIdentifier, function(err, data) {
+    core.getTestsForProject(path, projectIdentifier, function(err, data) {
       var t = new Table()
 
       data.forEach(function(project) {

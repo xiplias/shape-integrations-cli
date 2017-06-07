@@ -1,7 +1,6 @@
 {
   "name": "shape-integrations-cli",
   "version": "1.0.0",
-  "main": "lib",
   "description": "Cli for running shape integration locally",
   "scripts": {
     "lint": "prettier --no-semi --single-quote --write bin/cli.js"

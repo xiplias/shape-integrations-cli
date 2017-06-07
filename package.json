@@ -1,8 +1,8 @@
 {
   "name": "shape-integrations-cli",
   "version": "1.0.0",
-  "description": "",
   "main": "lib",
+  "description": "Cli for running shape integration locally",
   "scripts": {
     "lint": "prettier --no-semi --single-quote --write bin/cli.js"
   },
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/xiplias/shape-integrations-cli.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Anders Hansen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xiplias/shape-integrations-cli/issues"

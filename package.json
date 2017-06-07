@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "prettier --no-semi --single-quote --write bin/cli.js"
   },
   "bin": {
     "si": "bin/cli.js"
@@ -26,5 +26,8 @@
     "easy-table": "^1.1.0",
     "prettyjson": "^1.2.1",
     "shape-integrations-core": "file:///Users/xiplias/Shape/shape-integrations-core"
+  },
+  "devDependencies": {
+    "prettier": "^1.4.2"
   }
 }

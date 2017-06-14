@@ -28,6 +28,6 @@
     "shape-integrations-core": "github:olegam/shape-integrations"
   },
   "devDependencies": {
-    "prettier": "^1.4.2"
+    "prettier": "^1.4.4"
   }
 }

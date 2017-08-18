@@ -22,7 +22,7 @@
   "homepage": "https://github.com/xiplias/shape-integrations-cli#readme",
   "dependencies": {
     "chalk": "^1.1.3",
-    "commander": "^2.9.0",
+    "commander": "^2.10.0",
     "easy-table": "^1.1.0",
     "prettyjson": "^1.2.1",
     "shape-integrations-core": "github:olegam/shape-integrations"

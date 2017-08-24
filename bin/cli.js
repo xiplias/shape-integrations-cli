@@ -8,7 +8,7 @@ const list = require('../lib/list')
 const open = require('../lib/open')
 
 program
-  .version('0.0.1')
+  .version(require('../package.json').version)
   .option('-p, --path <path>', 'path for projects (defaults to projects)')
 
 program

@@ -4,7 +4,8 @@
   "description": "Cli for running shape integration locally",
   "scripts": {
     "lint": "prettier --no-semi --single-quote --write bin/cli.js",
-    "pkg": "pkg package.json"
+    "pkg": "pkg package.json",
+    "zip-pkg": "find . -name 'shape-integrations-cli-*' -not -name '*.zip' -exec zip '{}.zip' '{}' \\;"
   },
   "bin": {
     "si": "bin/cli.js",

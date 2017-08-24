@@ -3,7 +3,8 @@
   "version": "1.3.1",
   "description": "Cli for running shape integration locally",
   "scripts": {
-    "lint": "prettier --no-semi --single-quote --write bin/cli.js"
+    "lint": "prettier --no-semi --single-quote --write bin/cli.js",
+    "pkg": "pkg package.json"
   },
   "bin": {
     "si": "bin/cli.js",
@@ -31,6 +32,7 @@
     "superagent": "^3.6.0"
   },
   "devDependencies": {
+    "pkg": "^4.2.4",
     "prettier": "^1.4.4"
   },
   "pkg": {
